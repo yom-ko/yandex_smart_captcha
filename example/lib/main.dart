@@ -41,14 +41,14 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     _controller = CaptchaController();
-    _config = CaptchaConfig(
+    _config = const CaptchaConfig(
       siteKey: siteKey,
       testMode: true,
       // webView: true,
       // language: CaptchaUILanguage.ru,
       // invisible: false,
       // hideShield: false,
-      // shieldPosition: CaptchaShieldPosition.topLeft,
+      // shieldPosition: CaptchaShieldPosition.bottomRight,
       backgroundColor: Colors.lightBlue,
     );
     _controller.setReadyCallback(() {
@@ -78,9 +78,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   if (url.contains('smartcaptcha_notice')) {
                     // Block the navigation request.
                     return false;
-                  } else {
-                    return true;
                   }
+                  return true;
                 },
                 onChallengeShown: () {
                   debugPrint('call: onChallengeShown');
