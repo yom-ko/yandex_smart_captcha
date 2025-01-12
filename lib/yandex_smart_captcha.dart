@@ -179,12 +179,6 @@ class _YandexSmartCaptchaState extends State<YandexSmartCaptcha> {
   }
 
   @override
-  void dispose() {
-    _captchaController?._inAppWebViewController?.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
