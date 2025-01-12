@@ -1,3 +1,6 @@
+## 1.0.5
+- Remove disposal of `_inAppWebViewController` in the `YandexSmartCaptcha` widget.
+
 ## 1.0.4
 - Cleanup CHANGELOG
 
