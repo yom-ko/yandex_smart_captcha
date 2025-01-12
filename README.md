@@ -1,4 +1,4 @@
-# Yandex SmartCaptcha
+# Yandex SmartCaptcha for Flutter
 
 To learn more about Yandex SmartCaptcha, visit its [official page](https://yandex.cloud/en/services/smartcaptcha).
 
