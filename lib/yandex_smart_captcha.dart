@@ -159,8 +159,8 @@ class YandexSmartCaptcha extends StatefulWidget {
   /// completely wrong, the string might be empty.
   final Function(String token) onTokenReceived;
 
-  /// Called when a navigation request is made. Return `false` from the callback to block the request;
-  /// otherwise, return `true`.
+  /// Called when a navigation request is made in the underlying WebView. Return `false` from the callback
+  /// to block the request; otherwise, return `true`.
   final bool Function(String url)? onNavigationRequest;
 
   /// A widget to display while the captcha is loading.
