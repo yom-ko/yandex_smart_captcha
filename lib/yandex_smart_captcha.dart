@@ -1,20 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'src/captcha_web_page.dart';
+import 'src/web_captcha_data.dart';
 
 export 'package:yandex_smart_captcha/yandex_smart_captcha.dart';
 
+/// Supported languages for the Web SmartCaptcha widget's UI.
 enum CaptchaUILanguage {
+  /// Russian
   ru,
+
+  /// English
   en,
+
+  /// Belarusian
   be,
+
+  /// Kazakh
   kk,
+
+  /// Tatar
   tt,
+
+  /// Ukrainian
   uk,
+
+  /// Uzbek
   uz,
+
+  /// Turkish
   tr,
 }
 
+/// Supported positions for the shield that includes a link
+/// to the Data Processing document (when invisible mode is enabled).
 enum CaptchaShieldPosition {
   topLeft('top-left'),
   centerLeft('center-left'),
@@ -31,67 +49,81 @@ enum CaptchaShieldPosition {
   String toString() => id;
 }
 
+/// Configuration for the [YandexSmartCaptcha] widget.
+/// Most options are applied to the underlying Web SmartCaptcha, hosted by the WebView.
+/// For more information, see the [Yandex SmartCaptcha documentation](https://yandex.cloud/en/docs/smartcaptcha/concepts/widget-methods#methods).
 final class CaptchaConfig {
-  /// A client key specified in the application hosting the widget.
+  /// A client key specified in the application hosting the SmartCaptcha widget.<br />
+  /// Corresponding JavaScript parameter – `sitekey`.
   final String siteKey;
 
-  /// If true, the user will ALWAYS see a challenge! Use this option only for debugging and testing.
+  /// If `true`, the user will ALWAYS see a challenge! Use this option only for debugging and testing.<br />
+  /// Corresponding JavaScript parameter – `test`.
   final bool testMode;
 
-  /// If true, the captcha will run in WebView mode, improving the accuracy of assessing captcha
-  /// completion on mobile devices.
-  final bool webView;
-
-  /// The language for the captcha widget UI: `ru` | `en` | `be` | `kk` | `tt` | `uk` | `uz` | `tr`
+  /// The language for the Web SmartCaptcha widget's UI: `ru` | `en` | `be` | `kk` | `tt` | `uk` | `uz` | `tr`<br />
+  /// Corresponding JavaScript parameter – `hl`.
   final CaptchaUILanguage language;
 
-  /// If true, the captcha will run in invisible mode — without the "I’m not a robot" button on the page.
-  /// Only users whose requests are deemed suspicious by SmartCaptcha will see the challenge.
+  /// If `true`, the captcha will run in invisible mode — without the "I’m not a robot" button on the page.
+  /// Only users whose requests are deemed suspicious by Yandex SmartCaptcha will see the challenge.<br />
+  /// Corresponding JavaScript parameter – `invisible`.
   final bool invisible;
 
-  /// If true and invisible mode is enabled, the shield with a link to the Data Processing document will be hidden.
+  /// If `true` and invisible mode is enabled, the shield with a link to the Data Processing document will be hidden.
+  /// WARNING: You MUST inform users that their data is processed by SmartCaptcha! If you hide the notice shield,
+  /// make sure to find another way to notify users about the data processing.<br />
+  /// Corresponding JavaScript parameter – `hideShield`.
   final bool hideShield;
 
+  /// If `true`, the captcha will run in special WebView mode, improving the accuracy of the captcha test
+  /// assessment on mobile devices. Since this package is designed for Flutter, this option should typically be set to `true`.<br />
+  /// Corresponding JavaScript parameter – `webview`.
+  final bool webView;
+
   /// If invisible mode is enabled, specifies the position of the shield with a link to the Data Processing document:
-  /// `top-left` | `center-left` | `bottom-left` | `top-right` | `center-right` | `bottom-right`.
+  /// `top-left` | `center-left` | `bottom-left` | `top-right` | `center-right` | `bottom-right`.<br />
+  /// Corresponding JavaScript parameter – `shieldPosition`.
   final CaptchaShieldPosition shieldPosition;
 
-  /// The background color of the captcha widget.
+  /// The background color of the SmartCaptcha widget.
   final Color? backgroundColor;
 
   const CaptchaConfig({
     required this.siteKey,
     this.testMode = false,
-    this.webView = true,
     this.language = CaptchaUILanguage.ru,
     this.invisible = false,
     this.hideShield = false,
     this.shieldPosition = CaptchaShieldPosition.bottomRight,
+    this.webView = true,
     this.backgroundColor,
   });
 }
 
+/// The controller for the [YandexSmartCaptcha] widget.
+/// It is primarily designed to manage the underlying Web SmartCaptcha, hosted by the WebView.
 final class CaptchaController {
   InAppWebViewController? _inAppWebViewController;
   VoidCallback? _onControllerReady;
 
-  /// Returns true if the controller is ready.
+  /// Returns `true` if the underlying WebView controller is ready.
   bool get isReady => _inAppWebViewController != null;
 
-  /// Starts user validation and is commonly used to trigger the invisible CAPTCHA test
-  /// during specific events, such as when the user clicks the Submit button on a form.
+  /// Starts user validation and is commonly used to trigger the invisible captcha test
+  /// during specific events, such as when the user clicks the submit button on a form.
   Future<dynamic> execute() async {
     return _inAppWebViewController?.evaluateJavascript(
         source: 'window.smartCaptcha.execute()');
   }
 
-  /// Removes CAPTCHA widgets and any listeners they create.
+  /// Removes the Web SmartCaptcha JavaScript widgets, hosted by the WebView, along with any listeners they create.
   Future<dynamic> destroy() async {
     return _inAppWebViewController?.evaluateJavascript(
         source: 'window.smartCaptcha.destroy()');
   }
 
-  /// Sets a callback to be called when the controller is ready.
+  /// Sets a callback to be called when the underlying WebView controller is ready.
   // ignore: use_setters_to_change_properties
   void setReadyCallback(VoidCallback readyCallback) {
     _onControllerReady = readyCallback;
@@ -104,16 +136,16 @@ final class CaptchaController {
 }
 
 class YandexSmartCaptcha extends StatefulWidget {
-  /// The configuration for the CAPTCHA widget.
+  /// The configuration for the [YandexSmartCaptcha] widget.
   final CaptchaConfig config;
 
-  /// The controller for the CAPTCHA widget.
+  /// The controller for the [YandexSmartCaptcha] widget.
   final CaptchaController? controller;
 
-  /// Called when the CAPTCHA challenge is shown.
+  /// Called when the captcha challenge is shown.
   final VoidCallback? onChallengeShown;
 
-  /// Called when the CAPTCHA challenge is hidden.
+  /// Called when the captcha challenge is hidden.
   final VoidCallback? onChallengeHidden;
 
   /// Called when a network error occurs.
@@ -122,14 +154,16 @@ class YandexSmartCaptcha extends StatefulWidget {
   /// Called when a JavaScript error occurs.
   final VoidCallback? onJavaScriptError;
 
-  /// Called when a token is received after a successful CAPTCHA test is completed.
-  final Function(String) onTokenReceived;
+  /// Called when a token is received after the user successfully completes a captcha test.
+  /// The callback receives a token string as an argument. On rare occasions, if something goes
+  /// completely wrong, the string might be empty.
+  final Function(String token) onTokenReceived;
 
-  /// Called when a navigation request is made. To block the request, return false from the callback
-  /// (otherwise, return true).
+  /// Called when a navigation request is made. Return `false` from the callback to block the request;
+  /// otherwise, return `true`.
   final bool Function(String url)? onNavigationRequest;
 
-  /// A widget to display while the CAPTCHA is loading.
+  /// A widget to display while the captcha is loading.
   final Widget? loadingIndicator;
 
   const YandexSmartCaptcha({
@@ -150,7 +184,7 @@ class YandexSmartCaptcha extends StatefulWidget {
 }
 
 class _YandexSmartCaptchaState extends State<YandexSmartCaptcha> {
-  late final CaptchaWebPage _captchaWebPage;
+  late final WebCaptchaData _webCaptchaData;
   late final CaptchaController? _captchaController;
 
   final _captchaLoaded = ValueNotifier<bool>(false);
@@ -167,7 +201,7 @@ class _YandexSmartCaptchaState extends State<YandexSmartCaptcha> {
     super.initState();
     final config = widget.config;
     _captchaController = widget.controller;
-    _captchaWebPage = CaptchaWebPage(
+    _webCaptchaData = WebCaptchaData(
       siteKey: config.siteKey,
       testMode: config.testMode,
       webView: config.webView,
@@ -195,7 +229,7 @@ class _YandexSmartCaptchaState extends State<YandexSmartCaptcha> {
         ],
         InAppWebView(
           initialSettings: settings,
-          initialData: InAppWebViewInitialData(data: _captchaWebPage.data),
+          initialData: InAppWebViewInitialData(data: _webCaptchaData.html),
           onPermissionRequest: (controller, request) async {
             return PermissionResponse(
               resources: request.resources,
@@ -211,7 +245,8 @@ class _YandexSmartCaptchaState extends State<YandexSmartCaptcha> {
                 : NavigationActionPolicy.CANCEL;
           },
           onConsoleMessage: (controller, consoleMessage) {
-            debugPrint('YandexSmartCaptcha js console message:$consoleMessage');
+            debugPrint(
+                'YandexSmartCaptcha JS console message: $consoleMessage');
           },
           onWebViewCreated: (controller) {
             _captchaController?._setController(controller);
