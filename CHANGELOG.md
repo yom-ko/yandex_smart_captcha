@@ -1,3 +1,7 @@
+## 1.0.8
+- Update Example for iOS
+- Improve package metadata
+
 ## 1.0.7
 - Fix screenshots for README
 
