@@ -2,8 +2,7 @@
 
 To learn more about Yandex SmartCaptcha, visit its [official page](https://yandex.cloud/en/services/smartcaptcha).
 
-This package was inspired by [flutter_yandex_smartcaptcha](https://pub.dev/packages/flutter_yandex_smartcaptcha) but offers several improvements, including bug fixes, better performance and a cleaner API.
-  
+This package was inspired by [flutter_yandex_smartcaptcha](https://pub.dev/packages/flutter_yandex_smartcaptcha), but it offers several improvements, including bug fixes, slightly better performance, enhanced documentation, and a cleaner API.
 
 <div>
   <img src="https://raw.githubusercontent.com/yom-ko/flutter_yandex_smart_captcha/refs/heads/main/assets/images/screen_1.png" alt="Description" width="250">

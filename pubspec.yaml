@@ -4,12 +4,31 @@ version: 1.0.7
 homepage: https://github.com/yom-ko/flutter_yandex_smart_captcha
 repository: https://github.com/yom-ko/flutter_yandex_smart_captcha
 
+topics:
+  - smart-captcha
+  - invisible-captcha
+  - recaptcha
+  - captcha
+  - yandex
+
+screenshots:
+  - description: 'This screenshot shows the initial state of the Yandex SmartCaptcha container with the "I’m not a robot" checkbox.'
+    path: assets/images/screen_1.png
+  - description: 'This screenshot shows the initial state of the Yandex SmartCaptcha pop-up, featuring a challenge for the user to solve.'
+    path: assets/images/screen_2.png
+  - description: 'This screenshot shows the state of the Yandex SmartCaptcha container with the "I’m not a robot" box checked, after the user successfully solved the challenge.'
+    path: assets/images/screen_3.png
+  - description: 'This screenshot shows the initial state of the Yandex SmartCaptcha container with the "I’m not a robot" checkbox, as seen in a real-world application.'
+    path: assets/images/screen_laz_1.png
+  - description: 'This screenshot shows the initial state of the Yandex SmartCaptcha pop-up, featuring a challenge for the user to solve in a real-world application.'
+    path: assets/images/screen_laz_2.png
+
 platforms:
   android:
   ios:
 
 environment:
-  sdk: '>=3.0.1<4.0.0'
+  sdk: '>=3.0.1 <4.0.0'
   flutter: '>=1.17.0'
 
 dependencies:
