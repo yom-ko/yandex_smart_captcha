@@ -1,3 +1,7 @@
+## 1.0.9
+- Improve Doc comments
+- Minor fixes/improvements
+
 ## 1.0.8
 - Update Example for iOS
 - Improve package metadata
