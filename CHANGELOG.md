@@ -1,3 +1,6 @@
+## 1.0.6
+- Add screenshots for README
+
 ## 1.0.5
 - Remove disposal of `_inAppWebViewController` in the `YandexSmartCaptcha` widget.
 
