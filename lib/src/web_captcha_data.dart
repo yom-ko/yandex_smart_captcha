@@ -1,6 +1,6 @@
 // https://yandex.cloud/en/docs/smartcaptcha/concepts/widget-methods#methods
 
-final class CaptchaWebPage {
+final class WebCaptchaData {
   final String _siteKey;
   final bool _testMode;
   final bool _webView;
@@ -9,9 +9,9 @@ final class CaptchaWebPage {
   final bool _hideShield;
   final String _shieldPosition;
 
-  late final String data;
+  late final String html;
 
-  CaptchaWebPage({
+  WebCaptchaData({
     required String siteKey,
     bool testMode = false,
     bool webView = true,
@@ -26,7 +26,7 @@ final class CaptchaWebPage {
         _invisible = invisible,
         _hideShield = hideShield,
         _shieldPosition = shieldPosition {
-    data = '''
+    html = '''
 <!doctype html>
 <html lang="ru">
 
