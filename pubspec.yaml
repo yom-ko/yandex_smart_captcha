@@ -13,15 +13,15 @@ topics:
 
 screenshots:
   - description: 'This screenshot shows the initial state of the Yandex SmartCaptcha container with the "I’m not a robot" checkbox.'
-    path: assets/images/screen_1.png
+    path: assets/images/screen_1.webp
   - description: 'This screenshot shows the initial state of the Yandex SmartCaptcha pop-up, featuring a challenge for the user to solve.'
-    path: assets/images/screen_2.png
+    path: assets/images/screen_2.webp
   - description: 'This screenshot shows the state of the Yandex SmartCaptcha container with the "I’m not a robot" box checked, after the user successfully solved the challenge.'
-    path: assets/images/screen_3.png
+    path: assets/images/screen_3.webp
   - description: 'This screenshot shows the initial state of the Yandex SmartCaptcha container with the "I’m not a robot" checkbox, as seen in a real-world application.'
-    path: assets/images/screen_laz_1.png
+    path: assets/images/screen_laz_1.webp
   - description: 'This screenshot shows the initial state of the Yandex SmartCaptcha pop-up, featuring a challenge for the user to solve in a real-world application.'
-    path: assets/images/screen_laz_2.png
+    path: assets/images/screen_laz_2.webp
 
 platforms:
   android:
