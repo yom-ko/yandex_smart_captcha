@@ -6,12 +6,12 @@ This package was inspired by [flutter_yandex_smartcaptcha](https://pub.dev/packa
   
 
 <div>
-  <img src="assets/images/screen_1.png" alt="Description" width="250">
-  <img src="assets/images/screen_2.png" alt="Description" width="250">
-  <img src="assets/images/screen_3.png" alt="Description" width="250">
+  <img src="https://raw.githubusercontent.com/yom-ko/flutter_yandex_smart_captcha/refs/heads/main/assets/images/screen_1.png" alt="Description" width="250">
+  <img src="https://raw.githubusercontent.com/yom-ko/flutter_yandex_smart_captcha/refs/heads/main/assets/images/screen_2.png" alt="Description" width="250">
+  <img src="https://raw.githubusercontent.com/yom-ko/flutter_yandex_smart_captcha/refs/heads/main/assets/images/screen_3.png" alt="Description" width="250">
 </div>
 
 <div>
-  <img src="assets/images/screen_laz_1.png" alt="Description" width="250">
-  <img src="assets/images/screen_laz_2.png" alt="Description" width="250">
+  <img src="https://raw.githubusercontent.com/yom-ko/flutter_yandex_smart_captcha/refs/heads/main/assets/images/screen_laz_1.png" alt="Description" width="250">
+  <img src="https://raw.githubusercontent.com/yom-ko/flutter_yandex_smart_captcha/refs/heads/main/assets/images/screen_laz_2.png" alt="Description" width="250">
 </div>
