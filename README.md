@@ -10,7 +10,7 @@ One day at work, I needed to integrate a Yandex captcha into a mobile app ASAP, 
 
 ### Screenshots
 
-SmartCaptcha in a simple test screen:
+1. SmartCaptcha in a simple test screen:
 
 <div>
   <img
@@ -27,7 +27,7 @@ SmartCaptcha in a simple test screen:
     width="250">
 </div><br/>
 
-SmartCaptcha in a real-worl application:
+2. SmartCaptcha in a real-worl application:
 
 <div>
   <img
