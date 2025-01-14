@@ -1,3 +1,6 @@
+## 1.0.10
+- Improve README
+
 ## 1.0.9
 - Improve Doc comments
 - Minor fixes/improvements
