@@ -4,7 +4,7 @@ This package was inspired by [flutter_yandex_smartcaptcha](https://pub.dev/packa
 
 ### Motivation
 
-One day at work, I urgently needed to integrate a Yandex CAPTCHA into a mobile app, and the `flutter_yandex_smartcaptcha` package came to the rescue. However, I discovered a serious bug and it to the author. When they didn’t respond, I decided to create a similar package myself and learn how to publish packages on pub.dev in the process. The end of the magnificent story.
+One day at work, I urgently needed to integrate a Yandex CAPTCHA into a mobile app, and the `flutter_yandex_smartcaptcha` package came to the rescue. However, I discovered a serious bug and reported it to the author. When they didn’t respond, I decided to create a similar package myself and learn how to publish packages on pub.dev in the process. The end of the magnificent story.
 
 ### Screenshots
 
