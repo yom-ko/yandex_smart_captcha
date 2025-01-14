@@ -1,3 +1,6 @@
+## 1.0.14
+- Compress screenshots
+
 ## 1.0.13
 - Fix code formatting
 
