@@ -1,3 +1,6 @@
+## 1.0.12
+- Try to fix pub.dev analysis
+
 ## 1.0.11
 - Improve README
 
