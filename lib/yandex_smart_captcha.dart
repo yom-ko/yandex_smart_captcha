@@ -113,14 +113,12 @@ final class CaptchaController {
   /// Starts user validation and is commonly used to trigger the invisible captcha test
   /// during specific events, such as when the user clicks the submit button on a form.
   Future<dynamic> execute() async {
-    return _inAppWebViewController?.evaluateJavascript(
-        source: 'window.smartCaptcha.execute()');
+    return _inAppWebViewController?.evaluateJavascript(source: 'window.smartCaptcha.execute()');
   }
 
   /// Removes the Web SmartCaptcha JavaScript widgets, hosted by the WebView, along with any listeners they create.
   Future<dynamic> destroy() async {
-    return _inAppWebViewController?.evaluateJavascript(
-        source: 'window.smartCaptcha.destroy()');
+    return _inAppWebViewController?.evaluateJavascript(source: 'window.smartCaptcha.destroy()');
   }
 
   /// Sets a callback to be called when the underlying WebView controller is ready.
@@ -136,7 +134,7 @@ final class CaptchaController {
 }
 
 /// The Flutter widget for [YandexSmartCaptcha].
-/// It wraps the WebView that executes the SmartCaptcha HTML/JavaScript code.
+/// It wraps the WebView that executes the Web SmartCaptcha HTML/JavaScript code.
 class YandexSmartCaptcha extends StatefulWidget {
   /// The configuration for the [YandexSmartCaptcha] widget.
   final CaptchaConfig config;
@@ -157,8 +155,8 @@ class YandexSmartCaptcha extends StatefulWidget {
   final VoidCallback? onJavaScriptError;
 
   /// Called when a token is received after the user successfully completes a captcha test.
-  /// The callback receives a token string as an argument. On rare occasions, if something goes
-  /// completely wrong, the string might be empty.
+  /// The callback receives a token string as an argument. In rare cases, if something goes
+  /// completely wrong, the string might be empty, so check accordingly.
   final Function(String token) onTokenReceived;
 
   /// Called when a navigation request is made in the underlying WebView. Return `false` from the callback
@@ -225,8 +223,7 @@ class _YandexSmartCaptchaState extends State<YandexSmartCaptcha> {
         if (widget.loadingIndicator != null) ...[
           ValueListenableBuilder(
             valueListenable: _captchaLoaded,
-            builder: (_, loaded, __) =>
-                loaded ? const SizedBox.shrink() : widget.loadingIndicator!,
+            builder: (_, loaded, __) => loaded ? const SizedBox.shrink() : widget.loadingIndicator!,
           ),
         ],
         InAppWebView(
@@ -240,15 +237,11 @@ class _YandexSmartCaptchaState extends State<YandexSmartCaptcha> {
           },
           shouldOverrideUrlLoading: (controller, navigationAction) async {
             final url = navigationAction.request.url.toString();
-            final callbackResult =
-                widget.onNavigationRequest?.call(url) ?? true;
-            return callbackResult
-                ? NavigationActionPolicy.ALLOW
-                : NavigationActionPolicy.CANCEL;
+            final callbackResult = widget.onNavigationRequest?.call(url) ?? true;
+            return callbackResult ? NavigationActionPolicy.ALLOW : NavigationActionPolicy.CANCEL;
           },
           onConsoleMessage: (controller, consoleMessage) {
-            debugPrint(
-                'YandexSmartCaptcha JS console message: $consoleMessage');
+            debugPrint('YandexSmartCaptcha JS console message: $consoleMessage');
           },
           onWebViewCreated: (controller) {
             _captchaController?._setController(controller);
@@ -282,8 +275,7 @@ class _YandexSmartCaptchaState extends State<YandexSmartCaptcha> {
               ..addJavaScriptHandler(
                   handlerName: 'onTokenReceived',
                   callback: (args) {
-                    final maybeToken =
-                        args.isNotEmpty ? args.first.toString() : '';
+                    final maybeToken = args.isNotEmpty ? args.first.toString() : '';
                     widget.onTokenReceived.call(maybeToken);
                   });
           },
