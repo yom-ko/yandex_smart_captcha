@@ -1,3 +1,6 @@
+## 1.0.11
+- Improve README
+
 ## 1.0.10
 - Improve README
 
