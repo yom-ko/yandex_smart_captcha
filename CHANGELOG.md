@@ -1,3 +1,6 @@
+## 1.0.16
+- Fix spelling in README
+
 ## 1.0.15
 - Fix code formatting one more time (sorry)
 
