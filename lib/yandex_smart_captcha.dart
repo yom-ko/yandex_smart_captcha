@@ -135,6 +135,8 @@ final class CaptchaController {
   }
 }
 
+/// The Flutter widget for [YandexSmartCaptcha].
+/// It wraps the WebView that executes the SmartCaptcha HTML/JavaScript code.
 class YandexSmartCaptcha extends StatefulWidget {
   /// The configuration for the [YandexSmartCaptcha] widget.
   final CaptchaConfig config;
