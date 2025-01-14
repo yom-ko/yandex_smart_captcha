@@ -25,7 +25,7 @@ One day at work, I urgently needed to integrate a Yandex CAPTCHA into a mobile a
     width="250">
 </div><br/>
 
-2. SmartCaptcha in a real-worl application:
+2. SmartCaptcha in a real-world application:
 
 <div>
   <img
