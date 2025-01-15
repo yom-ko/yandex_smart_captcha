@@ -12,15 +12,15 @@ One day at work, I urgently needed to integrate a Yandex CAPTCHA into a mobile a
 
 <div>
   <img
-    src="https://raw.githubusercontent.com/yom-ko/flutter_yandex_smart_captcha/refs/heads/main/assets/images/screen_1.webp"
+    src="https://raw.githubusercontent.com/yom-ko/yandex_smart_captcha/refs/heads/main/assets/images/screen_1.webp"
     alt="The initial state of the Yandex SmartCaptcha container with the 'I’m not a robot' checkbox."
     width="250">
   <img
-    src="https://raw.githubusercontent.com/yom-ko/flutter_yandex_smart_captcha/refs/heads/main/assets/images/screen_2.webp"
+    src="https://raw.githubusercontent.com/yom-ko/yandex_smart_captcha/refs/heads/main/assets/images/screen_2.webp"
     alt="The initial state of the Yandex SmartCaptcha pop-up, featuring a challenge for the user to solve."
     width="250">
   <img
-    src="https://raw.githubusercontent.com/yom-ko/flutter_yandex_smart_captcha/refs/heads/main/assets/images/screen_3.webp"
+    src="https://raw.githubusercontent.com/yom-ko/yandex_smart_captcha/refs/heads/main/assets/images/screen_3.webp"
     alt="The state of the Yandex SmartCaptcha container with the 'I’m not a robot' box checked, after the user successfully solved the challenge."
     width="250">
 </div><br/>
@@ -29,11 +29,11 @@ One day at work, I urgently needed to integrate a Yandex CAPTCHA into a mobile a
 
 <div>
   <img
-    src="https://raw.githubusercontent.com/yom-ko/flutter_yandex_smart_captcha/refs/heads/main/assets/images/screen_laz_1.webp"
+    src="https://raw.githubusercontent.com/yom-ko/yandex_smart_captcha/refs/heads/main/assets/images/screen_laz_1.webp"
     alt="The initial state of the Yandex SmartCaptcha container with the 'I’m not a robot' checkbox, as seen in a real-world application."
     width="250">
   <img
-    src="https://raw.githubusercontent.com/yom-ko/flutter_yandex_smart_captcha/refs/heads/main/assets/images/screen_laz_2.webp"
+    src="https://raw.githubusercontent.com/yom-ko/yandex_smart_captcha/refs/heads/main/assets/images/screen_laz_2.webp"
     alt="The initial state of the Yandex SmartCaptcha pop-up, featuring a challenge for the user to solve in a real-world application."
     width="250">
 </div>
