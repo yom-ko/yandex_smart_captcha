@@ -1,3 +1,6 @@
+## 1.0.17
+- Rename the package repository to `yandex_smart_captcha` to avoid confusion.
+
 ## 1.0.16
 - Fix spelling in README
 
