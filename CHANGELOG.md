@@ -1,3 +1,8 @@
+## 1.0.19
+- Remove the `async` attribute from the SmartCaptcha `script` tag.
+- Improve Doc comments
+- Improve Example
+
 ## 1.0.18
 - Improve Doc comments
 - Minor fixes/improvements
