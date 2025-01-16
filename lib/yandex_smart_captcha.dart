@@ -57,7 +57,7 @@ final class CaptchaConfig {
   /// Corresponding JavaScript parameter – `sitekey`.
   final String siteKey;
 
-  /// If true, the user will ALWAYS see a challenge. Use this option only for debugging or testing.<br />
+  /// If `true`, the user will ALWAYS see a challenge. Use this option only for debugging or testing.<br />
   /// Corresponding JavaScript parameter – `test`.
   final bool testMode;
 
@@ -67,12 +67,12 @@ final class CaptchaConfig {
   /// Corresponding JavaScript parameter – `hl`.
   final CaptchaUILanguage language;
 
-  /// If true, the CAPTCHA runs in invisible mode – without the 'I’m not a robot' button on the page.
+  /// If `true`, the CAPTCHA runs in invisible mode – without the 'I’m not a robot' button on the page.
   /// Only users whose requests are deemed suspicious by Yandex SmartCaptcha will see a challenge.<br />
   /// Corresponding JavaScript parameter – `invisible`.
   final bool invisible;
 
-  /// If true and invisible mode is enabled, the shield with a link to the Data Processing document is hidden.
+  /// If `true` and invisible mode is enabled, the shield with a link to the Data Processing document is hidden.
   /// WARNING: You MUST inform users that their data is processed by SmartCaptcha. If you hide the notice shield,
   /// ensure there is another way to notify users about data processing.<br />
   /// Corresponding JavaScript parameter – `hideShield`.
@@ -83,7 +83,7 @@ final class CaptchaConfig {
   /// Corresponding JavaScript parameter – `shieldPosition`.
   final CaptchaShieldPosition shieldPosition;
 
-  /// If true, the CAPTCHA runs in special WebView mode, improving the accuracy of the test assessment on mobile
+  /// If `true`, the CAPTCHA runs in special WebView mode, improving the accuracy of the test assessment on mobile
   /// devices. This package is designed for Flutter, so this option should typically be set to `true`.<br />
   /// Corresponding JavaScript parameter – `webview`.
   final bool webView;
@@ -109,7 +109,7 @@ final class CaptchaController {
   InAppWebViewController? _inAppWebViewController;
   VoidCallback? _onControllerReady;
 
-  /// Returns true if the underlying WebView controller is fully initialized and ready.
+  /// Returns `true` if the underlying WebView controller is fully initialized and ready.
   bool get isReady => _inAppWebViewController != null;
 
   /// Starts user validation and is commonly used to trigger the invisible CAPTCHA test
