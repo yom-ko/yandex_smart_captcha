@@ -44,11 +44,11 @@ class _MyHomePageState extends State<MyHomePage> {
     _config = const CaptchaConfig(
       siteKey: siteKey,
       testMode: true,
-      // webView: true,
-      // language: CaptchaUILanguage.ru,
+      language: CaptchaUILanguage.en,
       // invisible: false,
       // hideShield: false,
       // shieldPosition: CaptchaShieldPosition.bottomRight,
+      // webView: true,
       backgroundColor: Colors.lightBlue,
     );
     _controller.setReadyCallback(() {
@@ -75,8 +75,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 onNavigationRequest: (url) {
                   debugPrint('call: onNavigationRequest $url');
-                  if (url.contains('smartcaptcha_notice')) {
-                    // Block the navigation request.
+                  if (url.contains('cloud.yandex')) {
+                    // Block the navigation request when the user
+                    // clicks on the 'SmartCaptcha by Yandex Cloud' link.
                     return false;
                   }
                   return true;
