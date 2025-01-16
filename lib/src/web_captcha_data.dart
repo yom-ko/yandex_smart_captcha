@@ -3,29 +3,29 @@
 final class WebCaptchaData {
   final String _siteKey;
   final bool _testMode;
-  final bool _webView;
   final String _language;
   final bool _invisible;
   final bool _hideShield;
   final String _shieldPosition;
+  final bool _webView;
 
   late final String html;
 
   WebCaptchaData({
     required String siteKey,
     bool testMode = false,
-    bool webView = true,
     String language = 'ru',
     bool invisible = false,
     bool hideShield = false,
     String shieldPosition = 'bottom-right',
+    bool webView = true,
   })  : _siteKey = siteKey,
         _testMode = testMode,
-        _webView = webView,
         _language = language,
         _invisible = invisible,
         _hideShield = hideShield,
-        _shieldPosition = shieldPosition {
+        _shieldPosition = shieldPosition,
+        _webView = webView {
     html = '''
 <!doctype html>
 <html lang="ru">
