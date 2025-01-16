@@ -36,7 +36,6 @@ final class WebCaptcha {
   <title></title>
   <script
     src="https://smartcaptcha.yandexcloud.net/captcha.js?render=onload&onload=onLoadFunction"
-    async
     defer></script>
 </head>
 
