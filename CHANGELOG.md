@@ -1,3 +1,7 @@
+## 1.0.18
+- Improve Doc comments
+- Minor fixes/improvements
+
 ## 1.0.17
 - Rename the package repository to `yandex_smart_captcha` to avoid confusion.
 
