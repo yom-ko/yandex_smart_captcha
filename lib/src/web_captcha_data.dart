@@ -1,6 +1,6 @@
 // https://yandex.cloud/en/docs/smartcaptcha/concepts/widget-methods#methods
 
-final class WebCaptchaData {
+final class WebCaptcha {
   final String _siteKey;
   final bool _testMode;
   final String _language;
@@ -11,7 +11,7 @@ final class WebCaptchaData {
 
   late final String html;
 
-  WebCaptchaData({
+  WebCaptcha({
     required String siteKey,
     bool testMode = false,
     String language = 'ru',
@@ -28,7 +28,7 @@ final class WebCaptchaData {
         _webView = webView {
     html = '''
 <!doctype html>
-<html lang="ru">
+<html lang="$_language">
 
 <head>
   <meta charset="utf-8" />

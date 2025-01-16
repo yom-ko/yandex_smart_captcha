@@ -61,7 +61,9 @@ final class CaptchaConfig {
   /// Corresponding JavaScript parameter – `test`.
   final bool testMode;
 
-  /// The language of the Web SmartCaptcha widget UI. Supported values: `ru` | `en` | `be` | `kk` | `tt` | `uk` | `uz` | `tr`<br />
+  /// The language of the Web SmartCaptcha widget UI. For some languages, this setting may also determine
+  /// the CAPTCHA challenge language (typically switching it to English).<br />
+  /// Supported values: `ru` | `en` | `be` | `kk` | `tt` | `uk` | `uz` | `tr`<br />
   /// Corresponding JavaScript parameter – `hl`.
   final CaptchaUILanguage language;
 
@@ -76,7 +78,7 @@ final class CaptchaConfig {
   /// Corresponding JavaScript parameter – `hideShield`.
   final bool hideShield;
 
-  /// If invisible mode is enabled, this option specifies the position of the shield with a link to the Data Processing document.
+  /// If invisible mode is enabled, this option specifies the position of the shield with a link to the Data Processing document.<br />
   /// Supported values: `top-left` | `center-left` | `bottom-left` | `top-right` | `center-right` | `bottom-right`.<br />
   /// Corresponding JavaScript parameter – `shieldPosition`.
   final CaptchaShieldPosition shieldPosition;
@@ -187,7 +189,7 @@ class YandexSmartCaptcha extends StatefulWidget {
 }
 
 class _YandexSmartCaptchaState extends State<YandexSmartCaptcha> {
-  late final WebCaptchaData _webCaptchaData;
+  late final WebCaptcha _webCaptcha;
   late final CaptchaController? _captchaController;
 
   final _captchaLoaded = ValueNotifier<bool>(false);
@@ -204,7 +206,7 @@ class _YandexSmartCaptchaState extends State<YandexSmartCaptcha> {
     super.initState();
     final config = widget.config;
     _captchaController = widget.controller;
-    _webCaptchaData = WebCaptchaData(
+    _webCaptcha = WebCaptcha(
       siteKey: config.siteKey,
       testMode: config.testMode,
       language: config.language.name,
@@ -232,7 +234,7 @@ class _YandexSmartCaptchaState extends State<YandexSmartCaptcha> {
         ],
         InAppWebView(
           initialSettings: settings,
-          initialData: InAppWebViewInitialData(data: _webCaptchaData.html),
+          initialData: InAppWebViewInitialData(data: _webCaptcha.html),
           onPermissionRequest: (controller, request) async {
             return PermissionResponse(
               resources: request.resources,
