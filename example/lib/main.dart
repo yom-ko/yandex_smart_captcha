@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yandex_smart_captcha/yandex_smart_captcha.dart';
 
 // Get your key from the Yandex Cloud admin panel.
-const clientKey = String.fromEnvironment('SITE_KEY');
+const clientKey = String.fromEnvironment('CLIENT_KEY');
 
 void main() {
   runApp(const MyApp());
