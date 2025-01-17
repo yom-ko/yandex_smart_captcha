@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yandex_smart_captcha/yandex_smart_captcha.dart';
 
 // Get your key from the Yandex Cloud admin panel.
-const siteKey = String.fromEnvironment('SITE_KEY');
+const clientKey = String.fromEnvironment('SITE_KEY');
 
 void main() {
   runApp(const MyApp());
@@ -15,10 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Yandex SmartCaptcha',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: ThemeData(useMaterial3: true),
       home: const MyHomePage(title: 'Example'),
     );
   }
@@ -34,15 +31,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late final CaptchaController _controller;
   late final CaptchaConfig _config;
+  late final CaptchaController _controller;
 
   @override
   void initState() {
     super.initState();
-    _controller = CaptchaController();
     _config = const CaptchaConfig(
-      siteKey: siteKey,
+      clientKey: clientKey,
       testMode: true,
       language: CaptchaUILanguage.en,
       // invisible: false,
@@ -51,9 +47,10 @@ class _MyHomePageState extends State<MyHomePage> {
       // webView: true,
       backgroundColor: Colors.lightBlue,
     );
-    _controller.setReadyCallback(() {
-      debugPrint('call: SmartCaptcha controller is ready');
-    });
+    _controller = CaptchaController()
+      ..setReadyCallback(() {
+        debugPrint('call: SmartCaptcha controller is ready');
+      });
   }
 
   @override
@@ -82,6 +79,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   }
                   return true;
                 },
+                onNetworkError: () {
+                  debugPrint('call: onNetworkError');
+                },
+                onJavaScriptError: () {
+                  debugPrint('call: onJavaScriptError');
+                },
                 onChallengeShown: () {
                   debugPrint('call: onChallengeShown');
                 },
@@ -90,12 +93,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
                 onTokenReceived: (token) {
                   debugPrint('call: onTokenReceived $token');
-                },
-                onNetworkError: () {
-                  debugPrint('call: onNetworkError');
-                },
-                onJavaScriptError: () {
-                  debugPrint('call: onJavaScriptError');
                 },
               ),
             ),

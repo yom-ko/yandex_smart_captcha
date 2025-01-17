@@ -55,7 +55,7 @@ enum CaptchaShieldPosition {
 final class CaptchaConfig {
   /// A client-side key passed to the underlying Web SmartCaptcha widget.<br />
   /// Corresponding JavaScript parameter – `sitekey`.
-  final String siteKey;
+  final String clientKey;
 
   /// If `true`, the user will ALWAYS see a challenge. Use this option only for debugging or testing.<br />
   /// Corresponding JavaScript parameter – `test`.
@@ -92,7 +92,7 @@ final class CaptchaConfig {
   final Color? backgroundColor;
 
   const CaptchaConfig({
-    required this.siteKey,
+    required this.clientKey,
     this.testMode = false,
     this.language = CaptchaUILanguage.ru,
     this.invisible = false,
@@ -109,7 +109,7 @@ final class CaptchaController {
   InAppWebViewController? _inAppWebViewController;
   VoidCallback? _onControllerReady;
 
-  /// Returns `true` if the underlying WebView controller is fully initialized and ready.
+  /// Returns `true` if the underlying WebView controller is fully initialized.
   bool get isReady => _inAppWebViewController != null;
 
   /// Starts user validation and is commonly used to trigger the invisible CAPTCHA test
@@ -207,7 +207,7 @@ class _YandexSmartCaptchaState extends State<YandexSmartCaptcha> {
     final config = widget.config;
     _captchaController = widget.controller;
     _webCaptcha = WebCaptcha(
-      siteKey: config.siteKey,
+      clientKey: config.clientKey,
       testMode: config.testMode,
       language: config.language.name,
       invisible: config.invisible,

@@ -1,7 +1,7 @@
 // https://yandex.cloud/en/docs/smartcaptcha/concepts/widget-methods#methods
 
 final class WebCaptcha {
-  final String _siteKey;
+  final String _clientKey;
   final bool _testMode;
   final String _language;
   final bool _invisible;
@@ -12,14 +12,14 @@ final class WebCaptcha {
   late final String html;
 
   WebCaptcha({
-    required String siteKey,
+    required String clientKey,
     bool testMode = false,
     String language = 'ru',
     bool invisible = false,
     bool hideShield = false,
     String shieldPosition = 'bottom-right',
     bool webView = true,
-  })  : _siteKey = siteKey,
+  })  : _clientKey = clientKey,
         _testMode = testMode,
         _language = language,
         _invisible = invisible,
@@ -44,7 +44,7 @@ final class WebCaptcha {
     function onLoadFunction() {
       if (window.smartCaptcha) {
         const widgetId = window.smartCaptcha.render('captcha-container', {
-          sitekey: '$_siteKey',
+          sitekey: '$_clientKey',
           test: $_testMode,
           webview: $_webView,
           hl: '$_language',
