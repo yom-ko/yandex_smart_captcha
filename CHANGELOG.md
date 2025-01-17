@@ -1,3 +1,7 @@
+## 2.0.22
+- BREAKING CHANGE: Rename the `siteKey` configuration option to `clientKey` to avoid confusion. Since the migration is straightforward, the old name has been removed without a deprecation period.
+- Improve Example
+
 ## 1.0.19
 - Remove the `async` attribute from the SmartCaptcha `script` tag.
 - Improve Doc comments
