@@ -1,6 +1,6 @@
 This package makes it easy to integrate a Yandex SmartCaptcha into Flutter mobile apps. To learn more about the Yandex SmartCaptcha service, visit its [official page](https://yandex.cloud/en/services/smartcaptcha).
 
-This package was inspired by [flutter_yandex_smartcaptcha](https://pub.dev/packages/flutter_yandex_smartcaptcha), but it offers several improvements, including bug fixes, slightly better performance, enhanced documentation, and a [cleaner API](https://pub.dev/documentation/yandex_smart_captcha/latest/yandex_smart_captcha).
+This package was inspired by [flutter_yandex_smartcaptcha](https://pub.dev/packages/flutter_yandex_smartcaptcha), but it offers several improvements, including bug fixes, slightly better performance, enhanced documentation, and a much [cleaner API](https://pub.dev/documentation/yandex_smart_captcha/latest/yandex_smart_captcha).
 
 ### Motivation
 
