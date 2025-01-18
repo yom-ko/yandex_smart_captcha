@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 
-// TODO: Add tests
+// All tests are written in the Example's test folder.
 void main() {
   test('test', () {});
 }
