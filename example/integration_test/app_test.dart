@@ -4,28 +4,41 @@ import 'package:patrol/patrol.dart';
 import 'package:yandex_smart_captcha/yandex_smart_captcha.dart';
 
 void main() {
-  patrolTest('Full test', ($) async {
+  patrolTest('run integration test', ($) async {
     await $.pumpWidgetAndSettle(const MyApp());
 
+    // Test the main widgets are rendered.
     expect($(MyApp), findsOne);
     expect($(MyHomePage), findsOne);
     expect($(YandexSmartCaptcha), findsOne);
 
-    final executeButton = $('Execute');
+    // Test the basic user flow for Web SmartCaptcha.
+    await $.native.tap(Selector(textContains: 'robot'));
 
-    expect(executeButton, findsOneWidget);
+    // TODO: Fix text entering later?
+    // await $.native.enterTextByIndex(
+    //   'НАПОЛЗАЯ ПЕНОЙ',
+    //   index: 0,
+    // );
 
     await $.pump(const Duration(seconds: 2));
 
-    await executeButton.tap();
+    await $.native.tap(Selector(textContains: 'continue'));
 
-    final destroyButton = $('Destroy');
+    await $.pump(const Duration(seconds: 2));
 
-    expect(destroyButton, findsOneWidget);
+    // Test the CaptchaController methods.
+    final buttonExecute = $('Execute');
+    final buttonDestroy = $('Destroy');
 
-    await $.pump(const Duration(seconds: 4));
+    expect(buttonExecute, findsOneWidget);
+    expect(buttonDestroy, findsOneWidget);
 
-    await destroyButton.tap();
+    await buttonExecute.tap();
+
+    await $.pump(const Duration(seconds: 2));
+
+    await buttonDestroy.tap();
 
     await $.pump(const Duration(seconds: 2));
   });
