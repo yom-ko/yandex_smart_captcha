@@ -91,3 +91,5 @@ pubspec.lock
 .buildlog/
 .history
 .svn/
+.env
+env.g.dart
