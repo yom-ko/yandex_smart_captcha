@@ -1,3 +1,6 @@
+## 2.0.24
+- Add tests to the Example app
+
 ## 2.0.22
 - BREAKING CHANGE: Rename the `siteKey` configuration option to `clientKey` to avoid confusion. Since the migration is straightforward, the old name has been removed without a deprecation period.
 - Improve Example
