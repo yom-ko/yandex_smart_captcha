@@ -192,7 +192,7 @@ class _YandexSmartCaptchaState extends State<YandexSmartCaptcha> {
   late final WebCaptcha _webCaptcha;
   late final CaptchaController? _captchaController;
 
-  final _captchaLoaded = ValueNotifier<bool>(false);
+  final _webCaptchaLoaded = ValueNotifier<bool>(false);
 
   final settings = InAppWebViewSettings(
     transparentBackground: true,
@@ -227,9 +227,10 @@ class _YandexSmartCaptchaState extends State<YandexSmartCaptcha> {
           ),
         if (widget.loadingIndicator != null) ...[
           ValueListenableBuilder(
-            valueListenable: _captchaLoaded,
-            builder: (_, loaded, __) =>
-                loaded ? const SizedBox.shrink() : widget.loadingIndicator!,
+            valueListenable: _webCaptchaLoaded,
+            child: widget.loadingIndicator,
+            builder: (_, loaded, child) =>
+                loaded ? const SizedBox.shrink() : child!,
           ),
         ],
         InAppWebView(
@@ -280,7 +281,7 @@ class _YandexSmartCaptchaState extends State<YandexSmartCaptcha> {
               ..addJavaScriptHandler(
                   handlerName: 'onCaptchaLoaded',
                   callback: (args) {
-                    _captchaLoaded.value = true;
+                    _webCaptchaLoaded.value = true;
                   })
               ..addJavaScriptHandler(
                   handlerName: 'onTokenReceived',
