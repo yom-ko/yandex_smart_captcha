@@ -1,3 +1,6 @@
+## 2.0.25
+- Minor fixes/improvements
+
 ## 2.0.24
 - Add tests to the Example app
 
