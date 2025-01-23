@@ -218,6 +218,12 @@ class _YandexSmartCaptchaState extends State<YandexSmartCaptcha> {
   }
 
   @override
+  void dispose() {
+    _webCaptchaLoaded.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
@@ -236,23 +242,21 @@ class _YandexSmartCaptchaState extends State<YandexSmartCaptcha> {
         InAppWebView(
           initialSettings: settings,
           initialData: InAppWebViewInitialData(data: _webCaptcha.html),
-          onPermissionRequest: (controller, request) async {
+          onPermissionRequest: (_, request) async {
             return PermissionResponse(
               resources: request.resources,
               action: PermissionResponseAction.GRANT,
             );
           },
-          shouldOverrideUrlLoading: (controller, navigationAction) async {
+          shouldOverrideUrlLoading: (_, navigationAction) async {
             final url = navigationAction.request.url.toString();
-            final callbackResult =
-                widget.onNavigationRequest?.call(url) ?? true;
-            return callbackResult
+            final cbResult = widget.onNavigationRequest?.call(url) ?? true;
+            return cbResult
                 ? NavigationActionPolicy.ALLOW
                 : NavigationActionPolicy.CANCEL;
           },
-          onConsoleMessage: (controller, consoleMessage) {
-            debugPrint(
-                'YandexSmartCaptcha JS console message: $consoleMessage');
+          onConsoleMessage: (_, message) {
+            debugPrint('YandexSmartCaptcha JS console message: $message');
           },
           onWebViewCreated: (controller) {
             _captchaController?._setController(controller);
