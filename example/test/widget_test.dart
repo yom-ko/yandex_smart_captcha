@@ -10,10 +10,10 @@ void main() {
   setUp(mockWebViewDependencies.init);
 
   testWidgets('run app widgets test', (tester) async {
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(const App());
 
-    expect(find.byType(MyApp), findsOne);
-    expect(find.byType(MyHomePage), findsOne);
+    expect(find.byType(App), findsOne);
+    expect(find.byType(HomePage), findsOne);
     expect(find.byType(YandexSmartCaptcha), findsOne);
 
     final buttonExecute = find.widgetWithText(ElevatedButton, 'Execute');

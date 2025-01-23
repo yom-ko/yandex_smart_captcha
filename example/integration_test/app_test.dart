@@ -5,11 +5,11 @@ import 'package:yandex_smart_captcha/yandex_smart_captcha.dart';
 
 void main() {
   patrolTest('run integration test', ($) async {
-    await $.pumpWidgetAndSettle(const MyApp());
+    await $.pumpWidgetAndSettle(const App());
 
     // Test the main widgets are rendered.
-    expect($(MyApp), findsOne);
-    expect($(MyHomePage), findsOne);
+    expect($(App), findsOne);
+    expect($(HomePage), findsOne);
     expect($(YandexSmartCaptcha), findsOne);
 
     // Test the basic user flow for Web SmartCaptcha.

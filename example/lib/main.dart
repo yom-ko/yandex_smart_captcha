@@ -5,32 +5,32 @@ import 'package:yandex_smart_captcha/yandex_smart_captcha.dart';
 const clientKey = String.fromEnvironment('CLIENT_KEY');
 
 void main() {
-  runApp(const MyApp());
+  runApp(const App());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class App extends StatelessWidget {
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Yandex SmartCaptcha',
       theme: ThemeData(useMaterial3: true),
-      home: const MyHomePage(title: 'Example'),
+      home: const HomePage(title: 'Example'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class HomePage extends StatefulWidget {
   final String title;
 
-  const MyHomePage({required this.title, super.key});
+  const HomePage({required this.title, super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomePageState extends State<HomePage> {
   late final CaptchaConfig _config;
   late final CaptchaController _controller;
 
