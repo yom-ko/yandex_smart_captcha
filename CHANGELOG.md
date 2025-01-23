@@ -1,3 +1,7 @@
+## 2.0.26
+- Add disposal of the loading state's ValueNotifier in the `YandexSmartCaptcha` widget.
+- Improve Example
+
 ## 2.0.25
 - Minor fixes/improvements
 
