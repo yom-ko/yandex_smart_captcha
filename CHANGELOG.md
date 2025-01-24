@@ -1,3 +1,8 @@
+## 3.0.0
+- BREAKING CHANGE: Major API overhaul: Rename most configuration options to make them more sensible, declarative, and consistent. Since the migration is straightforward, the old names were removed without a deprecation period.
+- BREAKING CHANGE: Make the token parameter in the `onChallengeSolved` (formerly `onTokenReceived`) callback nullable.
+- Improve Doc comments
+
 ## 2.0.26
 - Add disposal of the loading state's ValueNotifier in the `YandexSmartCaptcha` widget.
 - Improve Example
