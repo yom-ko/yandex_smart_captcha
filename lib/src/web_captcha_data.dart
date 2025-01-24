@@ -2,30 +2,30 @@
 
 final class WebCaptcha {
   final String _clientKey;
-  final bool _testMode;
+  final bool _alwaysShowChallenge;
   final String _language;
-  final bool _invisible;
-  final bool _hideShield;
-  final String _shieldPosition;
-  final bool _webView;
+  final bool _invisibleMode;
+  final bool _hideDPNBadge;
+  final String _dpnBadgePosition;
+  final bool _webViewMode;
 
   late final String html;
 
   WebCaptcha({
     required String clientKey,
-    bool testMode = false,
+    bool alwaysShowChallenge = false,
     String language = 'ru',
-    bool invisible = false,
-    bool hideShield = false,
-    String shieldPosition = 'bottom-right',
-    bool webView = true,
+    bool invisibleMode = false,
+    bool hideDPNBadge = false,
+    String dpnBadgePosition = 'bottom-right',
+    bool webViewMode = true,
   })  : _clientKey = clientKey,
-        _testMode = testMode,
+        _alwaysShowChallenge = alwaysShowChallenge,
         _language = language,
-        _invisible = invisible,
-        _hideShield = hideShield,
-        _shieldPosition = shieldPosition,
-        _webView = webView {
+        _invisibleMode = invisibleMode,
+        _hideDPNBadge = hideDPNBadge,
+        _dpnBadgePosition = dpnBadgePosition,
+        _webViewMode = webViewMode {
     html = '''
 <!doctype html>
 <html lang="$_language">
@@ -45,12 +45,12 @@ final class WebCaptcha {
       if (window.smartCaptcha) {
         const widgetId = window.smartCaptcha.render('captcha-container', {
           sitekey: '$_clientKey',
-          test: $_testMode,
-          webview: $_webView,
+          test: $_alwaysShowChallenge,
           hl: '$_language',
-          invisible: $_invisible,
-          hideShield: $_hideShield,
-          shieldPosition: '$_shieldPosition',
+          invisible: $_invisibleMode,
+          hideShield: $_hideDPNBadge,
+          shieldPosition: '$_dpnBadgePosition',
+          webview: $_webViewMode,
           callback: resultCallback
         });
 
@@ -80,12 +80,12 @@ final class WebCaptcha {
 
         window.flutter_inappwebview.callHandler('onCaptchaLoaded');
       } else {
-        window.flutter_inappwebview.callHandler('onJavaScriptError');
+        window.flutter_inappwebview.callHandler('onNetworkError');
       }
     }
 
     function resultCallback(token) {
-      window.flutter_inappwebview.callHandler('onTokenReceived', token);
+      window.flutter_inappwebview.callHandler('onChallengeSolved', token);
     }
   </script>
   <div id="captcha-container" style="height: 100px"></div>

@@ -39,12 +39,12 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     _config = const CaptchaConfig(
       clientKey: clientKey,
-      testMode: true,
-      language: CaptchaUILanguage.en,
-      // invisible: false,
-      // hideShield: false,
-      // shieldPosition: CaptchaShieldPosition.bottomRight,
-      // webView: true,
+      alwaysShowChallenge: true,
+      language: CaptchaLanguage.en,
+      // invisibleMode: false,
+      // hideDPNBadge: false,
+      // dpnBadgePosition: DPNBadgePosition.bottomRight,
+      // webViewMode: true,
       backgroundColor: Colors.lightBlue,
     );
     _controller = CaptchaController()
@@ -91,8 +91,8 @@ class _HomePageState extends State<HomePage> {
                 onChallengeHidden: () {
                   debugPrint('call: onChallengeHidden');
                 },
-                onTokenReceived: (token) {
-                  debugPrint('call: onTokenReceived $token');
+                onChallengeSolved: (token) {
+                  debugPrint('call: onChallengeSolved $token');
                 },
               ),
             ),
