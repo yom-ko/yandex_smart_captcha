@@ -88,6 +88,18 @@ final class CaptchaConfig {
   /// Corresponding JavaScript parameter – `webview`.
   final bool webViewMode;
 
+  /// The initial scale factor for the Web SmartCaptcha content.
+  /// The value is passed to the `initial-scale` attribute of the HTML `viewport` meta tag.
+  final double initialContentScale;
+
+  /// If `true`, the user can zoom in and out of the Web SmartCaptcha content.
+  /// The value is passed to the `user-scalable` attribute of the HTML `viewport` meta tag.
+  final bool userScalableContent;
+
+  /// If `userScalableContent` is enabled, the maximum scale factor for the Web SmartCaptcha content.
+  /// The value is passed to the `maximum-scale` attribute of the HTML `viewport` meta tag.
+  final double maximumContentScale;
+
   /// The background color of the `YandexSmartCaptcha` widget.
   final Color? backgroundColor;
 
@@ -99,6 +111,9 @@ final class CaptchaConfig {
     this.hideDPNBadge = false,
     this.dpnBadgePosition = DPNBadgePosition.bottomRight,
     this.webViewMode = true,
+    this.initialContentScale = 1.0,
+    this.userScalableContent = false,
+    this.maximumContentScale = 3.0,
     this.backgroundColor,
   });
 }
@@ -214,6 +229,9 @@ class _YandexSmartCaptchaState extends State<YandexSmartCaptcha> {
       hideDPNBadge: config.hideDPNBadge,
       dpnBadgePosition: config.dpnBadgePosition.id,
       webViewMode: config.webViewMode,
+      initialContentScale: config.initialContentScale.clamp(0.1, 10),
+      userScalableContent: config.userScalableContent ? 'yes' : 'no',
+      maximumContentScale: config.maximumContentScale.clamp(0.1, 10),
     );
   }
 
