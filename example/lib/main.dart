@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yandex_smart_captcha/yandex_smart_captcha.dart';
 
-// Get your key from the Yandex Cloud admin panel.
+// Find your key in the Yandex Cloud admin panel.
 const clientKey = String.fromEnvironment('CLIENT_KEY');
 
 void main() {
@@ -45,6 +45,9 @@ class _HomePageState extends State<HomePage> {
       // hideDPNBadge: false,
       // dpnBadgePosition: DPNBadgePosition.bottomRight,
       // webViewMode: true,
+      // initialContentScale: 1.0,
+      // userScalableContent: false,
+      // maximumContentScale: 3.0,
       backgroundColor: Colors.lightBlue,
     );
     _controller = CaptchaController()
