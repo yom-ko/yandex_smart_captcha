@@ -1,3 +1,6 @@
+## 3.1.1
+- Improve Doc comments
+
 ## 3.1.0
 - Add options to control the HTML viewport scaling behavior: `initialContentScale`, `userScalableContent`, and `maximumContentScale`.
 
