@@ -89,15 +89,18 @@ final class CaptchaConfig {
   final bool webViewMode;
 
   /// The initial scale factor for the Web SmartCaptcha content.
-  /// The value is passed to the `initial-scale` attribute of the HTML `viewport` meta tag.
+  /// This value is passed to the `initial-scale` attribute of the HTML document's `viewport` meta tag.
+  /// The actual behavior may vary depending on the platform and OS version.
   final double initialContentScale;
 
   /// If `true`, the user can zoom in and out of the Web SmartCaptcha content.
-  /// The value is passed to the `user-scalable` attribute of the HTML `viewport` meta tag.
+  /// This value is passed to the `user-scalable` attribute of the HTML document's `viewport` meta tag.
+  /// The actual behavior may vary depending on the platform and OS version.
   final bool userScalableContent;
 
   /// If `userScalableContent` is enabled, the maximum scale factor for the Web SmartCaptcha content.
-  /// The value is passed to the `maximum-scale` attribute of the HTML `viewport` meta tag.
+  /// This value is passed to the `maximum-scale` attribute of the HTML document's `viewport` meta tag.
+  /// The actual behavior may vary depending on the platform and OS version.
   final double maximumContentScale;
 
   /// The background color of the `YandexSmartCaptcha` widget.
