@@ -85,7 +85,7 @@ final class CaptchaConfig {
 
   /// If `true`, the CAPTCHA runs in a special WebView mode, improving challenge accuracy on mobile devices.
   /// Since this package is designed for Flutter, this option should typically be set to `true`.
-  /// Corresponding JavaScript parameter: `webview`.
+  /// Corresponding JavaScript parameter – `webview`.
   final bool webViewMode;
 
   /// The initial scale factor for the Web SmartCaptcha content.
