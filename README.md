@@ -30,7 +30,7 @@ In most cases, you’ll only need the `YandexSmartCaptcha` and `CaptchaConfig` c
 
 #### Configuration parameters
 | Parameter | Required | Default | Description |
-|:----------|:-----------:|:-----------:|-------------|
+|:----------|:-----------:|:------------|:------------|
 | `clientKey` | ✔ |  | The client-side key passed to the Web SmartCaptcha. |
 | `alwaysShowChallenge` |  | `false` | If `true`, the user will always see a challenge. |
 | `language` |  | `ru` | The language for the Web SmartCaptcha UI. |
