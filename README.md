@@ -10,6 +10,42 @@ This package was inspired by [flutter_yandex_smartcaptcha](https://pub.dev/packa
 
 One day at work, I urgently needed to integrate a Yandex CAPTCHA into a mobile app, and the `flutter_yandex_smartcaptcha` package came to the rescue. However, I discovered a serious bug and reported it to the author. When they didn’t respond, I decided to create a similar package myself and learn how to publish packages on pub.dev in the process. The end of the magnificent story.
 
+
+## Usage
+
+Super simple! Here’s the most basic example:
+
+```dart
+YandexSmartCaptcha(
+  config: CaptchaConfig(
+    clientKey: 'your-client-key',
+  ),
+  onChallengeSolved: (token) {
+    // Handle the solved captcha token
+  },
+)
+```
+
+In most cases, you’ll only need the `CaptchaConfig` and `YandexSmartCaptcha` classes. The `CaptchaController` is entirely optional – it's useful if you need to trigger a challenge popup programmatically, but that’s rare.
+
+#### Configuration parameters
+| Parameter | Required | Description |
+|:----------|:-----------:|-------------|
+| `clientKey` | Yes | The client-side key passed to the Web SmartCaptcha. |
+| `alwaysShowChallenge` | No | If `true`, the user will always see a challenge. |
+| `language` | No | The language for the Web SmartCaptcha UI. |
+| `invisibleMode` | No | If `true`, the CAPTCHA runs in invisible mode – without the "I’m not a robot" checkbox. |
+| `hideDPNBadge` | No | If `true` and `invisibleMode` is enabled, the badge linking to the Data Processing Notice (DPN) will be hidden. |
+| `dpnBadgePosition` | No | If `invisibleMode` is enabled, this option specifies the position of the DPN badge. |
+| `webViewMode` | No | If `true`, the CAPTCHA runs in a special WebView mode, improving challenge accuracy on mobile devices. |
+| `initialContentScale` | No | The initial scale factor for the Web SmartCaptcha content. |
+| `userScalableContent` | No | If `true`, the user can zoom in and out of the Web SmartCaptcha content. |
+| `maximumContentScale` | No | If `userScalableContent` is enabled, this defines the maximum scale factor for the content. |
+| `backgroundColor` | No | The background color of the `YandexSmartCaptcha` widget. |
+
+👉 "Web SmartCaptcha" refers to the underlying HTML document, hosted in a WebView, that runs the Yandex SmartCaptcha JavaScript code.
+
+
 ## Screenshots
 
 1. SmartCaptcha in a simple test screen:

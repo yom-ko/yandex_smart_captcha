@@ -53,7 +53,7 @@ enum DPNBadgePosition {
 /// Most options apply to the underlying Web SmartCaptcha hosted in the WebView.
 /// For more information, see the [Yandex SmartCaptcha documentation](https://yandex.cloud/en/docs/smartcaptcha/concepts/widget-methods#methods).
 final class CaptchaConfig {
-  /// A client-side key passed to the underlying Web SmartCaptcha widget.<br />
+  /// A client-side key passed to the underlying Web SmartCaptcha.<br />
   /// Corresponding JavaScript parameter – `sitekey`.
   final String clientKey;
 
@@ -61,31 +61,31 @@ final class CaptchaConfig {
   /// Corresponding JavaScript parameter – `test`.
   final bool alwaysShowChallenge;
 
-  /// The language for the Web SmartCaptcha widget UI. For languages other than Russian, this setting
+  /// The language for the Web SmartCaptcha UI. For languages other than Russian, this setting
   /// also affects the CAPTCHA challenge language (typically switching it to English).<br />
   /// Supported values: `ru` | `en` | `be` | `kk` | `tt` | `uk` | `uz` | `tr`<br />
   /// Corresponding JavaScript parameter – `hl`.
   final CaptchaLanguage language;
 
-  /// If `true`, the CAPTCHA runs in invisible mode – without the 'I’m not a robot' checkbox on the page.
+  /// If `true`, the CAPTCHA runs in invisible mode – without the 'I’m not a robot' checkbox.
   /// Only users whose requests are deemed suspicious by Yandex SmartCaptcha will see a challenge.<br />
   /// Corresponding JavaScript parameter – `invisible`.
   final bool invisibleMode;
 
-  /// If `true` and invisible mode is enabled, the badge with a link to the Data Processing Notice will be hidden.
+  /// If `true` and invisible mode is enabled, the badge linking to the Data Processing Notice will be hidden.
   /// WARNING: You still MUST inform users that their data is processed by Yandex SmartCaptcha. If you hide the DPN badge,
   /// ensure there is an alternative method to notify users about data processing.<br />
   /// Corresponding JavaScript parameter – `hideShield`.
   final bool hideDPNBadge;
 
-  /// If invisible mode is enabled, this option specifies the position of the badge with a link to the Data Processing Notice.<br />
+  /// If `invisibleMode` is enabled, this option specifies the position of the badge linking to the Data Processing Notice.<br />
   /// Supported values: `top-left` | `center-left` | `bottom-left` | `top-right` | `center-right` | `bottom-right`.<br />
   /// Corresponding JavaScript parameter – `shieldPosition`.
   final DPNBadgePosition dpnBadgePosition;
 
-  /// If `true`, the CAPTCHA runs in special WebView mode, improving the accuracy of the challenge assessment on mobile devices.
-  /// This package is designed for Flutter, so this option should typically be set to `true`.<br />
-  /// Corresponding JavaScript parameter – `webview`.
+  /// If `true`, the CAPTCHA runs in a special WebView mode, improving challenge accuracy on mobile devices.
+  /// Since this package is designed for Flutter, this option should typically be set to `true`.
+  /// Corresponding JavaScript parameter: `webview`.
   final bool webViewMode;
 
   /// The initial scale factor for the Web SmartCaptcha content.
@@ -98,7 +98,7 @@ final class CaptchaConfig {
   /// The actual behavior may vary depending on the platform and OS version.
   final bool userScalableContent;
 
-  /// If `userScalableContent` is enabled, the maximum scale factor for the Web SmartCaptcha content.
+  /// If `userScalableContent` is enabled, this option specifies the maximum scale factor for the content.
   /// This value is passed to the `maximum-scale` attribute of the HTML document's `viewport` meta tag.
   /// The actual behavior may vary depending on the platform and OS version.
   final double maximumContentScale;
