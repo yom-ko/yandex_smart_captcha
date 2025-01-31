@@ -1,3 +1,7 @@
+## 3.1.3
+- Improve README
+- Improve Doc comments
+
 ## 3.1.2
 - Improve README
 
