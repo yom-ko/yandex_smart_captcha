@@ -1,3 +1,7 @@
+<!-- markdownlint-disable MD041 MD022 MD032 -->
+## 3.1.6
+- Chore
+
 ## 3.1.5
 - Improve README
 
