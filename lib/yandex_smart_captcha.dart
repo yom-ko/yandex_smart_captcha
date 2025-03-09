@@ -57,15 +57,15 @@ final class CaptchaConfig {
   /// Corresponding JavaScript parameter – `sitekey`.
   final String clientKey;
 
-  /// If `true`, the user will ALWAYS see a challenge. Use this option only for debugging or testing.<br />
-  /// Corresponding JavaScript parameter – `test`.
-  final bool alwaysShowChallenge;
-
   /// The language for the Web SmartCaptcha UI. For languages other than Russian, this setting
   /// also affects the CAPTCHA challenge language (typically switching it to English).<br />
   /// Supported values: `ru` | `en` | `be` | `kk` | `tt` | `uk` | `uz` | `tr`<br />
   /// Corresponding JavaScript parameter – `hl`.
   final CaptchaLanguage language;
+
+  /// If `true`, the user will ALWAYS see a challenge. Use this option only for debugging or testing.<br />
+  /// Corresponding JavaScript parameter – `test`.
+  final bool alwaysShowChallenge;
 
   /// If `true`, the CAPTCHA runs in invisible mode – without the 'I’m not a robot' checkbox.
   /// Only users whose requests are deemed suspicious by Yandex SmartCaptcha will see a challenge.<br />
@@ -108,8 +108,8 @@ final class CaptchaConfig {
 
   const CaptchaConfig({
     required this.clientKey,
-    this.alwaysShowChallenge = false,
     this.language = CaptchaLanguage.ru,
+    this.alwaysShowChallenge = false,
     this.invisibleMode = false,
     this.hideDPNBadge = false,
     this.dpnBadgePosition = DPNBadgePosition.bottomRight,
@@ -162,14 +162,13 @@ class YandexSmartCaptcha extends StatefulWidget {
   /// The configuration for the [YandexSmartCaptcha] widget.
   final CaptchaConfig config;
 
+  /// Called when the user successfully solves a CAPTCHA challenge. The callback usually receives
+  /// a token string as an argument. WARNING: In very rare cases, if something goes completely wrong,
+  /// the token may be `null`.
+  final void Function(String? token) onChallengeSolved;
+
   /// The controller for the [YandexSmartCaptcha] widget.
   final CaptchaController? controller;
-
-  /// Called when a network error is encountered.
-  final VoidCallback? onNetworkError;
-
-  /// Called when a JavaScript error is encountered.
-  final VoidCallback? onJavaScriptError;
 
   /// Called when the CAPTCHA challenge popup is shown.
   final VoidCallback? onChallengeShown;
@@ -177,10 +176,11 @@ class YandexSmartCaptcha extends StatefulWidget {
   /// Called when the CAPTCHA challenge popup is hidden.
   final VoidCallback? onChallengeHidden;
 
-  /// Called when the user successfully solves a CAPTCHA challenge. The callback usually receives
-  /// a token string as an argument. WARNING: In very rare cases, if something goes wrong,
-  /// the token may be `null`, so always check for this condition.
-  final void Function(String? token) onChallengeSolved;
+  /// Called when a network error is encountered.
+  final VoidCallback? onNetworkError;
+
+  /// Called when a JavaScript error is encountered.
+  final VoidCallback? onJavaScriptError;
 
   /// Called when a navigation request is made in the underlying WebView. Return `false` from the callback
   /// to block the request; otherwise, return `true` to allow it.
@@ -193,8 +193,8 @@ class YandexSmartCaptcha extends StatefulWidget {
     required this.config,
     required this.onChallengeSolved,
     this.controller,
-    this.onChallengeHidden,
     this.onChallengeShown,
+    this.onChallengeHidden,
     this.onNetworkError,
     this.onJavaScriptError,
     this.onNavigationRequest,
@@ -207,35 +207,54 @@ class YandexSmartCaptcha extends StatefulWidget {
 }
 
 class _YandexSmartCaptchaState extends State<YandexSmartCaptcha> {
-  late final WebCaptcha _webCaptcha;
+  late final InAppWebViewSettings _webViewSettings;
+  late final InAppWebViewInitialData _webViewData;
   late final CaptchaController? _captchaController;
 
   final _webCaptchaLoaded = ValueNotifier<bool>(false);
 
-  final settings = InAppWebViewSettings(
-    transparentBackground: true,
-    useShouldOverrideUrlLoading: true,
-    mediaPlaybackRequiresUserGesture: false,
-    allowsInlineMediaPlayback: true,
-  );
-
   @override
   void initState() {
     super.initState();
-    final config = widget.config;
-    _captchaController = widget.controller;
-    _webCaptcha = WebCaptcha(
-      clientKey: config.clientKey,
-      alwaysShowChallenge: config.alwaysShowChallenge,
-      language: config.language.name,
-      invisibleMode: config.invisibleMode,
-      hideDPNBadge: config.hideDPNBadge,
-      dpnBadgePosition: config.dpnBadgePosition.id,
-      webViewMode: config.webViewMode,
-      initialContentScale: config.initialContentScale.clamp(0.1, 10),
-      userScalableContent: config.userScalableContent ? 'yes' : 'no',
-      maximumContentScale: config.maximumContentScale.clamp(0.1, 10),
+
+    // INIT SETTINGS
+    _webViewSettings = InAppWebViewSettings(
+      transparentBackground: true,
+      useShouldOverrideUrlLoading: true,
+      mediaPlaybackRequiresUserGesture: false,
+      allowsInlineMediaPlayback: true,
     );
+
+    // INIT CONFIG
+    final CaptchaConfig(
+      :clientKey,
+      :alwaysShowChallenge,
+      :language,
+      :invisibleMode,
+      :hideDPNBadge,
+      :dpnBadgePosition,
+      :webViewMode,
+      :initialContentScale,
+      :userScalableContent,
+      :maximumContentScale,
+    ) = widget.config;
+
+    final webCaptcha = WebCaptcha(
+      clientKey: clientKey,
+      alwaysShowChallenge: alwaysShowChallenge,
+      language: language.name,
+      invisibleMode: invisibleMode,
+      hideDPNBadge: hideDPNBadge,
+      dpnBadgePosition: dpnBadgePosition.id,
+      webViewMode: webViewMode,
+      initialContentScale: initialContentScale.clamp(0.1, 10),
+      userScalableContent: userScalableContent ? 'yes' : 'no',
+      maximumContentScale: maximumContentScale.clamp(0.1, 10),
+    );
+    _webViewData = InAppWebViewInitialData(data: webCaptcha.html);
+
+    // INIT CONTROLLER
+    _captchaController = widget.controller;
   }
 
   @override
@@ -261,8 +280,8 @@ class _YandexSmartCaptchaState extends State<YandexSmartCaptcha> {
           ),
         ],
         InAppWebView(
-          initialSettings: settings,
-          initialData: InAppWebViewInitialData(data: _webCaptcha.html),
+          initialData: _webViewData,
+          initialSettings: _webViewSettings,
           onPermissionRequest: (_, request) async {
             return PermissionResponse(
               resources: request.resources,
@@ -271,8 +290,8 @@ class _YandexSmartCaptchaState extends State<YandexSmartCaptcha> {
           },
           shouldOverrideUrlLoading: (_, navigationAction) async {
             final url = navigationAction.request.url.toString();
-            final cbResult = widget.onNavigationRequest?.call(url) ?? true;
-            return cbResult
+            final result = widget.onNavigationRequest?.call(url) ?? true;
+            return result
                 ? NavigationActionPolicy.ALLOW
                 : NavigationActionPolicy.CANCEL;
           },
@@ -284,34 +303,34 @@ class _YandexSmartCaptchaState extends State<YandexSmartCaptcha> {
 
             controller
               ..addJavaScriptHandler(
-                  handlerName: 'onNetworkError',
+                  handlerName: networkErrorHandler,
                   callback: (args) {
                     widget.onNetworkError?.call();
                   })
               ..addJavaScriptHandler(
-                  handlerName: 'onJavaScriptError',
+                  handlerName: javaScriptErrorHandler,
                   callback: (args) {
                     widget.onJavaScriptError?.call();
                   })
               ..addJavaScriptHandler(
-                  handlerName: 'onChallengeShown',
+                  handlerName: challengeShownHandler,
                   callback: (args) {
                     widget.onChallengeShown?.call();
                   })
               ..addJavaScriptHandler(
-                  handlerName: 'onChallengeHidden',
+                  handlerName: challengeHiddenHandler,
                   callback: (args) {
                     widget.onChallengeHidden?.call();
                   })
               ..addJavaScriptHandler(
-                  handlerName: 'onChallengeSolved',
+                  handlerName: challengeSolvedHandler,
                   callback: (args) {
                     var token = args.firstOrNull?.toString();
                     token = token == 'null' ? null : token;
                     widget.onChallengeSolved(token);
                   })
               ..addJavaScriptHandler(
-                  handlerName: 'onCaptchaLoaded',
+                  handlerName: captchaLoadedHandler,
                   callback: (args) {
                     _webCaptchaLoaded.value = true;
                   });

@@ -1,5 +1,12 @@
 // https://yandex.cloud/en/docs/smartcaptcha/concepts/widget-methods#methods
 
+const networkErrorHandler = 'onNetworkError';
+const javaScriptErrorHandler = 'onJavaScriptError';
+const challengeShownHandler = 'onChallengeShown';
+const challengeHiddenHandler = 'onChallengeHidden';
+const captchaLoadedHandler = 'onCaptchaLoaded';
+const challengeSolvedHandler = 'onChallengeSolved';
+
 final class WebCaptcha {
   final String _clientKey;
   final bool _alwaysShowChallenge;
@@ -69,35 +76,35 @@ final class WebCaptcha {
         window.smartCaptcha.subscribe(
           widgetId,
           'network-error',
-          () => { window.flutter_inappwebview.callHandler('onNetworkError'); }
+          () => { window.flutter_inappwebview.callHandler($networkErrorHandler); }
         );
 
         window.smartCaptcha.subscribe(
           widgetId,
           'javascript-error',
-          () => { window.flutter_inappwebview.callHandler('onJavaScriptError'); }
+          () => { window.flutter_inappwebview.callHandler('$javaScriptErrorHandler'); }
         );
 
         window.smartCaptcha.subscribe(
           widgetId,
           'challenge-visible',
-          () => { window.flutter_inappwebview.callHandler('onChallengeShown'); }
+          () => { window.flutter_inappwebview.callHandler('$challengeShownHandler'); }
         );
 
         window.smartCaptcha.subscribe(
           widgetId,
           'challenge-hidden',
-          () => { window.flutter_inappwebview.callHandler('onChallengeHidden'); }
+          () => { window.flutter_inappwebview.callHandler('$challengeHiddenHandler'); }
         );
 
-        window.flutter_inappwebview.callHandler('onCaptchaLoaded');
+        window.flutter_inappwebview.callHandler('$captchaLoadedHandler');
       } else {
-        window.flutter_inappwebview.callHandler('onNetworkError');
+        window.flutter_inappwebview.callHandler('$networkErrorHandler');
       }
     }
 
     function resultCallback(token) {
-      window.flutter_inappwebview.callHandler('onChallengeSolved', token);
+      window.flutter_inappwebview.callHandler('$challengeSolvedHandler', token);
     }
   </script>
   <div id="captcha-container" style="height: 100px"></div>
