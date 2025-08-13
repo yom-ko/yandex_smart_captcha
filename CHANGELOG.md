@@ -1,4 +1,7 @@
 <!-- markdownlint-disable MD041 MD022 MD032 -->
+## 3.1.7
+- Chore
+
 ## 3.1.6
 - Chore
 
