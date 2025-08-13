@@ -48,9 +48,9 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
   mocktail: ^1.0.4
-  patrol: ^3.14.1
+  patrol: ^3.19.0
   plugin_platform_interface: ^2.1.8
 
 # For information on the generic Dart part of this file, see the

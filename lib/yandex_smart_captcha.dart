@@ -260,6 +260,7 @@ class _YandexSmartCaptchaState extends State<YandexSmartCaptcha> {
   @override
   void dispose() {
     _webCaptchaLoaded.dispose();
+
     super.dispose();
   }
 
